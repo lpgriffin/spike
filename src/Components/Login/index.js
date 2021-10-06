@@ -1,17 +1,28 @@
 
 import './style.css';
+import { useState } from 'react';
 
 const Login = ({ onLogin, onRegister }) => {
-  
+  const[email, setEmail] = useState("");
+  const[password, setPassword] = useState("");
+
+  const updateEmail = () => {
+    setEmail(document.getElementById("emailID").value);
+  }
+
+  const updatePassword = () => {
+    setPassword(document.getElementById("passwordID").value);
+  }
+
     return (
       <div className="login">
         <span className="heading">MadRentals<br/></span>
         <span className="label">email</span>
-        <input className="email" />
+        <input id="emailID" className="email" onChange={updateEmail} />
         <span className="label">password</span>
-        <input className="password" />
-        <button className="button" >register</button>
-        <button className="button" >login</button>
+        <input id="passwordID" className="password" onChange={updatePassword} />
+        <button className="button" onClick={() => onRegister(email, password)}>register</button>
+        <button className="button" onClick={() => onLogin(email, password)}>login</button>
       </div>
     );
   }

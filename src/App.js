@@ -4,9 +4,16 @@ import './App.css';
 
 function App() {
 
+  const onLogin = (email, password) => {
+    alert("login " + email + " " + password)
+  }
+  const onRegister = (email, password) => {
+    alert("register " + email + " " + password)
+  }
+
   return (
     <div className="App">
-      <Login />
+      <Login onLogin={onLogin} onRegister={onRegister} />
     </div>
   );
 }
