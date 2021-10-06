@@ -10,8 +10,8 @@ const Login = ({ onLogin, onRegister }) => {
         <input className="email" />
         <span className="label">password</span>
         <input className="password" />
-        <button className="button" >register</button>
-        <button className="button" >login</button>
+        <button className="button" onClick={onRegister}>register</button>
+        <button className="button" onClick={onLogin}>login</button>
       </div>
     );
   }
