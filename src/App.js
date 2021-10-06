@@ -4,11 +4,11 @@ import './App.css';
 
 function App() {
 
-  const onLogin = () => {
-    alert("register: ")
+  const onLogin = (email, password) => {
+    alert("login " + email + " " + password)
   }
-  const onRegister = () => {
-    alert("register: ")
+  const onRegister = (email, password) => {
+    alert("register " + email + " " + password)
   }
 
   return (
