@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-.login {
-    height: 395px;
+.renter {
+    height: 400px;
     width: 400px;
 
     background-color: #aaa;
@@ -14,6 +14,27 @@
     top: calc(35% - 200px);
     left: calc(50% - 200px);
     border-radius: 15px;
+
+    display: block;
+    justify-content: center;
+}
+
+.label {
+    font-size: 16px;
+    width: 400px;
+}
+
+.input {
+    height: 50px;
+    width: 380px;
+
+    font-size: 20px;
+}
+
+.checkbox {
+    width: 34px;
+    height: 34px;
+    margin-left: -1px;
 }
 
 .heading {
@@ -26,28 +47,17 @@
     margin-bottom: 10px;
 }
 
-.label {
+.subheading {
     font-size: 16px;
     width: 400px;
-}
 
-.email {
-    height: 50px;
-    width: 380px;
-
-    font-size: 20px;
-}
-
-.password {
-    height: 50px;
-    width: 380px;
-
-    font-size: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .button {
     height: 50px;
-    width: calc(50% - 6px);
+    width: 100%;
 
     margin-top: 20px;
     font-size: 20px;
