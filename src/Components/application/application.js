@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function Copyright(props) {
+const Copyright = ({props}) => {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
