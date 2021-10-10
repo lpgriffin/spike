@@ -1,10 +1,10 @@
-import express from "express";
-import bodyParser from "body-parser";
-import mongoose from "mongoose";
-import passport from "passport";
-import users from "./routes/api/users.js";
-import { pass } from "./config/passport.js";
-import { mongoURI } from "./config/keys.js";
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const passport = require("passport");
+const users = require("./routes/api/users.js");
+const pass = require("./config/passport.js").pass;
+const mongoURI = require("./config/keys.js").mongoURI;
 const app = express();
 
 app.use(
@@ -14,16 +14,15 @@ app.use(
 );
 app.use(bodyParser.json());
 
-const CONNECTION_URL = mongoURI;
+mongoose
+  .connect(mongoURI, { useNewUrlParser: true })
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch((err) => console.log(err));
 
 app.use(passport.initialize());
-pass(passport);
+require("./config/passport")(passport);
 app.use("/api/users", users);
 
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 
-mongoose
-  .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() =>
-    app.listen(PORT, () => console.log(`server running on port: ${PORT}`))
-  );
+app.listen(port, () => console.log(`Server up and running on port ${port} !`));

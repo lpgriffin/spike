@@ -1,15 +1,16 @@
-import pkg from "passport-jwt";
-import UserModel from "../models/userModel.js";
-import { secretOrKey } from "../config/keys.js";
-const { ExtractJwt, Strategy } = pkg;
+const JwtStrategy = require("passport-jwt").Strategy;
+const ExtractJwt = require("passport-jwt").ExtractJwt;
+const keys = require("../config/keys");
+const UserModel = require("../models/userModel.js");
+
 const opts = {};
 
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = secretOrKey;
+opts.secretOrKey = keys.secretOrKey;
 
-export const pass = (passport) => {
+module.exports = (passport) => {
   passport.use(
-    new Strategy(opts, (jwt_payload, done) => {
+    new JwtStrategy(opts, (jwt_payload, done) => {
       UserModel.findById(jwt_payload.id)
         .then((user) => {
           if (user) {

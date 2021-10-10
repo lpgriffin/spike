@@ -1,10 +1,10 @@
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import UserModel from "../models/userModel.js";
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const keys = require("../../config/keys");
 
-import { secretOrKey } from "../config/keys.js";
-import { validateRegisterInput } from "../validation/register.js";
-import { validateLoginInput } from "../validation/login.js";
+const validateRegisterInput = require("../validation/register.js");
+const validateLoginInput = require("../validation/login.js");
+const UserModel = require("../models/userModel.js");
 
 export const login = (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
@@ -32,7 +32,7 @@ export const login = (req, res) => {
         // Sign token
         jwt.sign(
           payload,
-          secretOrKey,
+          keys.secretOrKey,
           {
             expiresIn: 31556926, // 1 year in seconds
           },
@@ -56,7 +56,6 @@ export const register = (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
   // Check validation
   if (!isValid) {
-    console.log("here");
     return res.status(400).json(errors);
   }
   UserModel.findOne({ email: req.body.email }).then((user) => {
