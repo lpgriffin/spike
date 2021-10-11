@@ -2,7 +2,7 @@
 import './style.css';
 import { useState } from 'react';
 
-const Register = ({ onRegister, onBack }) => {
+const Register = ({ onRegister, onBack, data }) => {
   const[email, setEmail] = useState(undefined);
   const[password, setPassword] = useState(undefined);
   const[name, setName] = useState(undefined);

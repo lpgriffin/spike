@@ -1,7 +1,7 @@
 import "./style.css";
 import { useState } from "react";
 
-const RenterPortal = ({ email, onLogout }) => {
+const RenterPortal = ({ email, onLogout, data }) => {
   const [portal, setPortal] = useState("home");
   const [input, setInput] = useState("");
 

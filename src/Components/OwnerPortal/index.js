@@ -2,7 +2,7 @@ import "./style.css";
 import { useState } from "react";
 import Cards from "./Cards/index";
 
-const OwnerPortal = ({ email, onLogout }) => {
+const OwnerPortal = ({ email, onLogout, data }) => {
   const [portal, setPortal] = useState("home");
 
   return (
