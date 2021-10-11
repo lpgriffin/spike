@@ -36,7 +36,10 @@ const Register = ({ onRegister, onBack }) => {
         <span className="label">confirm password</span>
         <input id="password2ID" type="text" className="input" onChange={updatePassword2} />
         <button className="button" onClick={() => {
-          if(email && password && name && password2 && (password === password2)) onRegister(email, password, name, password2);
+          if(email && password && name && password2 && (password === password2)) {
+            
+            onRegister(email);
+          }
           else alert("Please verify that all fields are valid, and both passwords match");
           }}>Register</button>
         <button className="button" onClick={() => onBack()}>Back</button>
