@@ -2,7 +2,7 @@
 import './style.css';
 import { useState } from 'react';
 
-const Login = ({ onLogin, onRegister }) => {
+const Login = ({ onLogin, onRegister, data }) => {
   const[email, setEmail] = useState("");
   const[password, setPassword] = useState("");
 

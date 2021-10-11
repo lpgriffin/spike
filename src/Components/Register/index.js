@@ -2,7 +2,7 @@
 import './style.css';
 import { useState } from 'react';
 
-const Register = ({ onRegister, onBack }) => {
+const Register = ({ onRegister, onBack, data }) => {
   const[email, setEmail] = useState(undefined);
   const[password, setPassword] = useState(undefined);
   const[name, setName] = useState(undefined);
@@ -36,7 +36,16 @@ const Register = ({ onRegister, onBack }) => {
         <span className="label">confirm password</span>
         <input id="password2ID" type="text" className="input" onChange={updatePassword2} />
         <button className="button" onClick={() => {
-          if(email && password && name && password2 && (password === password2)) onRegister(email, password, name, password2);
+          if(email && password && name && password2 && (password === password2)) {
+            let temp = new Array(data.Renters.length + 1);
+            for(let x = 0; x < data.Renters.length; x++) {
+              temp[x] = data.Renters[x];
+            }
+            let toAdd = '{"Email":"'+email+'", "Password":"'+password+'", "Name":"'+name+'", "Rent":"null", "Owner":"null"}'
+            temp[data.Renters.length] = JSON.parse(toAdd);
+            data.Renters = temp;
+            onRegister(email);
+          }
           else alert("Please verify that all fields are valid, and both passwords match");
           }}>Register</button>
         <button className="button" onClick={() => onBack()}>Back</button>
