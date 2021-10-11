@@ -5,6 +5,21 @@ import Cards from "./Cards/index";
 const OwnerPortal = ({ email, onLogout, data }) => {
   const [portal, setPortal] = useState("home");
 
+  //Helper for generating cards
+  const getOwner = () => {
+    for (let x = 0; x < data.Owners.length; x++) {
+      if (data.Owners[x].Email === email) {
+        return data.Owners[x];
+      }
+    }
+  };
+
+  /*
+    getOwner().Applications.map((application) => ( //
+    <li>
+      <Cards email={email} user={"renter"} type={"applications"} />
+    </li>
+  */
   return (
     <div className="owner">
       <span className="heading">
@@ -47,7 +62,7 @@ const OwnerPortal = ({ email, onLogout, data }) => {
           <button className="button" onClick={() => setPortal("home")}>
             Back
           </button>
-          <Cards email={email} user={"renter"} type={"maintenance"}/>
+          <Cards email={email} user={"renter"} type={"maintenance"} />
         </div>
       ) : (
         <div>

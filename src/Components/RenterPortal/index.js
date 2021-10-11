@@ -28,9 +28,35 @@ const RenterPortal = ({ email, onLogout, data }) => {
   }
 
   const submitApplication = () => {
-    //TODO: Add whatever was in the input to the corresponding database
-    //input = the text to submit to the database
-    alert("application submitted to: " + application);
+    let name = undefined;
+    let owner = undefined;
+    for (let x = 0; x < data.Owners.length; x++) {
+      if (data.Owners[x].Email === application) {
+        owner = data.Owners[x].Email;
+      }
+    }
+
+    if(!owner) alert("Please input a valid email");
+
+    for (let x = 0; x < data.Renters.length; x++) {
+      if (data.Renters[x].Email === email) {
+        name = data.Renters[x].Name;
+      }
+    }
+
+    let toAdd = '{"Name":"' + name + '", "Email":"' + email + '"}';
+    for (let x = 0; x < data.Owners.length; x++) {
+      if (data.Owners[x].Email === owner) {
+        let temp = new Array(data.Owners[x].Applications.length);
+        for (let y = 0; y < data.Owners[x].Applications.length; y++) {
+          temp[y] = data.Owners[x].Applications[y];
+        }
+        temp[data.Owners[x].Applications.length] = JSON.parse(toAdd);
+        data.Owners[x].Applications = temp;
+      }
+    }
+    console.log(data);
+    setPortal("home");
   };
 
   const submitMaintenance = () => {
@@ -56,8 +82,7 @@ const RenterPortal = ({ email, onLogout, data }) => {
           temp[y] = data.Owners[x].MaintenanceRequests[y];
         }
         temp[data.Owners[x].MaintenanceRequests.length] = JSON.parse(toAdd);
-        data.Renters = temp;
-        console.log(data);
+        data.Owners[x].MaintenanceRequests = temp;
       }
     }
     setPortal("home");
