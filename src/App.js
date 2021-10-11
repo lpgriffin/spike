@@ -25,7 +25,7 @@ function App() {
     setRegister(true);
   };
 
-  const finishRegister = () => {
+  const finishRegister = (email, password, name, password2) => {
     //TODO: add email and password to database
     setRegister(false);
     setUserType("owner");
