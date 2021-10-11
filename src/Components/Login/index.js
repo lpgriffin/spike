@@ -18,11 +18,11 @@ const Login = ({ onLogin, onRegister }) => {
       <div className="login">
         <span className="heading">MadRentals<br/></span>
         <span className="label">email</span>
-        <input id="emailID" className="email" onChange={updateEmail} />
+        <input id="emailID" type="text" className="input" onChange={updateEmail} />
         <span className="label">password</span>
-        <input id="passwordID" className="password" onChange={updatePassword} />
-        <button className="button" onClick={() => onRegister(email, password)}>register</button>
-        <button className="button" onClick={() => onLogin(email, password)}>login</button>
+        <input id="passwordID" type="text" className="input" onChange={updatePassword} />
+        <button className="button" onClick={() => onLogin(email, password)}>Login</button>
+        <button className="button" onClick={() => onRegister(email, password)}>Register</button>
       </div>
     );
   }
