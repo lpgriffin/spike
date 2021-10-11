@@ -31,23 +31,16 @@
     width: 400px;
 }
 
-.email {
+.input {
     height: 50px;
-    width: 380px;
-
-    font-size: 20px;
-}
-
-.password {
-    height: 50px;
-    width: 380px;
+    width: calc(100% - 10px);
 
     font-size: 20px;
 }
 
 .button {
     height: 50px;
-    width: calc(50% - 6px);
+    width: 100%;
 
     margin-top: 20px;
     font-size: 20px;

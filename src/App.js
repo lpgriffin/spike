@@ -1,12 +1,14 @@
 import { default as Login } from "./Components/Login/index";
 import { default as RenterPortal } from "./Components/RenterPortal/index";
 import { default as OwnerPortal } from "./Components/OwnerPortal/index";
+import { default as Register } from "./Components/Register/index";
 import "./App.css";
 import { useState } from "react";
 
 function App() {
   const [userEmail, setUserEmail] = useState(undefined);
-  const [userType, setUserType] = useState("renter");
+  const [userType, setUserType] = useState("owner");
+  const [registering, setRegister] = useState(false);
 
   const onLogin = (email, password) => {
     //TODO: Check for email & password combination correctness
@@ -18,18 +20,32 @@ function App() {
       alert("Incorrect email or password, please try again");
     }
   };
-  const onRegister = (email, password) => {
-    //TODO: add register page
-    alert("register " + email + " " + password);
+
+  const onRegister = () => {
+    setRegister(true);
   };
+
+  const finishRegister = () => {
+    //TODO: add email and password to database
+    setRegister(false);
+    setUserType("owner");
+    setUserEmail(undefined);
+  };
+
+  const onBack = () => {
+    setRegister(false);
+  };
+
   const onLogout = (email, password) => {
-    setUserType("renter");
+    setUserType("owner");
     setUserEmail(undefined);
   };
 
   return (
     <div className="App">
-      {!userEmail ? (
+      {registering ? (
+        <Register onBack={onBack} onRegister={finishRegister} />
+      ) : !userEmail ? (
         <Login onLogin={onLogin} onRegister={onRegister} />
       ) : userType === "owner" ? (
         <OwnerPortal email={userEmail} onLogout={onLogout} />

@@ -47,7 +47,7 @@ const OwnerPortal = ({ email, onLogout }) => {
           <button className="button" onClick={() => setPortal("home")}>
             Back
           </button>
-          <Cards email={email} user={"renter"} type={"maintenance"} />
+          <Cards email={email} user={"renter"} type={"maintenance"}/>
         </div>
       ) : (
         <div>

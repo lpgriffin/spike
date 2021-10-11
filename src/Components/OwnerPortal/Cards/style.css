@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+.container {
+    width: 400px;
+}
+
+.card {
+    height: 50px;
+    width: calc(100% - 45px);
+
+    background-color: #e8e8e8;
+    margin-top: 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    border-bottom: 2px solid #252525;
+    border-right: 2px solid #252525;
+    border-left: 2px solid #777;
+    border-top: 2px solid #777;
+    display: flex;
+}
+.applications {
+    
+}
+
+.maintenance {
+    height: 200px;
+}
+
+.rent {
+    
+}
+
+.heading {
+    font-size: 64px;
+    width: 400px;
+
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 10px;
+}
+
+.subheading {
+    font-size: 16px;
+    width: 400px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.cardheading {
+    margin-top: 10px;
+    font-size: 20px;
+
+    position: absolute;
+    left: 40px;
+}
+
+.button {
+    height: 50px;
+    width: 100%;
+
+    margin-top: 20px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.subbutton {
+    height: 40px;
+    width: 25%;
+
+    margin-top: 5px;
+    font-size: 20px;
+    border-radius: 10px;
+
+    position: absolute;
+    right: 35px;
+}
+
+.b2 {
+    position: absolute;
+    right: calc(25% + 40px);
+}
+
+.fee {
+    width: 40%;
+}
+
+.cardInput {
+    margin-top: 55px;
+    height: 130px;
+    width: 370px;
+
+    font-size: 20px;
+    position: absolute;
+    left: 35px;
+}
