@@ -1,0 +1,32 @@
+{
+  "Owners": [
+    {
+      "Email": "fakeemail@wisc.edu",
+      "Name": "Fake Wisc",
+      "Renters": [
+        {
+          "Email": "lpgriffin@wisc.edu",
+          "Name": "Louis Griffin",
+          "Rent": "$30.00"
+        },
+        {
+          "Email": "lpgriffin@wisc.edu",
+          "Name": "Louis Griffin",
+          "Rent": "$30.00"
+        }
+      ],
+      "MaintenanceRequests": [
+        {
+          "Name": "Louis Griffin",
+          "Message": "there is lead in the water",
+          "Response": "lmao"
+        },
+        {
+          "Name": "Louis Griffin",
+          "Message": "pls sir my son is sick",
+          "Response": "null"
+        }
+      ]
+    }
+  ]
+}
