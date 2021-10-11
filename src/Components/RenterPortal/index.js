@@ -3,35 +3,74 @@ import { useState } from "react";
 
 const RenterPortal = ({ email, onLogout, data }) => {
   const [portal, setPortal] = useState("home");
-  const [input, setInput] = useState("");
+  const [maintenance, setMaintenance] = useState("");
+  const [application, setApplication] = useState("");
+  const [rent, setRent] = useState("");
 
-  const onInputChange = () => {
-    setInput(document.getElementById("inputID").value);
-  }
+  const onMaintenanceChange = () => {
+    setMaintenance(document.getElementById("maintenanceID").value);
+  };
+
+  const onApplicationChange = () => {
+    setApplication(document.getElementById("applicationID").value);
+  };
+
+  const onRentChange = () => {
+    setRent(document.getElementById("rentID").value);
+  };
 
   function getRent() {
-    return "20.00";
+    for (let x = 0; x < data.Renters.length; x++) {
+      if (data.Renters[x].Email === email) {
+        return data.Renters[x].Rent;
+      }
+    }
   }
 
-  const submitInput = ( type ) => {
+  const submitApplication = () => {
     //TODO: Add whatever was in the input to the corresponding database
     //input = the text to submit to the database
-    if(type === "application") {
-      alert("application submitted to: " + input);
-    }
-    if(type === "maintenance") {
-      if (document.getElementById('checkboxID').checked) {
-        alert("high priority maintenance request: " + input);
+    alert("application submitted to: " + application);
+  };
+
+  const submitMaintenance = () => {
+    let name = undefined;
+    let owner = undefined;
+    for (let x = 0; x < data.Renters.length; x++) {
+      if (data.Renters[x].Email === email) {
+        name = data.Renters[x].Name;
+        owner = data.Renters[x].Owner;
       }
-      else {
-        alert("lot priority maintenance request: " + input);
-      }
     }
-    if(type === "rent") {
-      alert("rent paid: " + input);
+
+    if (!owner || owner === "null") {
+      alert("You must have an owner to submit a maintenance request");
+      return;
+    }
+
+    let toAdd = '{"Name":"' + name + '", "Message":"' + maintenance + '", "Response":"null"}';
+    for (let x = 0; x < data.Owners.length; x++) {
+      if (data.Owners[x].Email === owner) {
+        let temp = new Array(data.Owners[x].MaintenanceRequests.length);
+        for (let y = 0; y < data.Owners[x].MaintenanceRequests.length; y++) {
+          temp[y] = data.Owners[x].MaintenanceRequests[y];
+        }
+        temp[data.Owners[x].MaintenanceRequests.length] = JSON.parse(toAdd);
+        data.Renters = temp;
+        console.log(data);
+      }
     }
     setPortal("home");
-  }
+  };
+
+  const submitRent = () => {
+    for (let x = 0; x < data.Renters.length; x++) {
+      if (data.Renters[x].Email === email) {
+        data.Renters[x].Rent = data.Renters[x].Rent - rent;
+        setPortal("home");
+      }
+    }
+  };
 
   return (
     <div className="owner">
@@ -63,8 +102,12 @@ const RenterPortal = ({ email, onLogout, data }) => {
             New Application <br />
           </span>
           <span className="label">email of owner</span>
-          <input id="inputID" className="input" onChange={() => onInputChange} />
-          <button className="button" onClick={() => submitInput("application")}>
+          <input
+            id="applicationID"
+            className="input"
+            onChange={() => onApplicationChange()}
+          />
+          <button className="button" onClick={() => submitApplication()}>
             Submit
           </button>
           <button className="button" onClick={() => setPortal("home")}>
@@ -77,10 +120,16 @@ const RenterPortal = ({ email, onLogout, data }) => {
             Maintenance Request <br />
           </span>
           <span className="label">description</span>
-          <input id="inputID" className="input" onChange={() => onInputChange} />
-          <span className="label">high priority? <br/></span>
+          <input
+            id="maintenanceID"
+            className="input"
+            onChange={() => onMaintenanceChange()}
+          />
+          <span className="label">
+            high priority? <br />
+          </span>
           <input id="checkboxID" className="checkbox" type="checkbox" />
-          <button className="button" onClick={() => submitInput("maintenance")}>
+          <button className="button" onClick={() => submitMaintenance()}>
             Submit
           </button>
           <button className="button" onClick={() => setPortal("home")}>
@@ -93,8 +142,12 @@ const RenterPortal = ({ email, onLogout, data }) => {
             Current Rent Owed: ${getRent()} <br />
           </span>
           <span className="label">amount</span>
-          <input id="inputID" className="input" onChange={() => onInputChange} />
-          <button className="button" onClick={() => submitInput("rent")}>
+          <input
+            id="rentID"
+            className="input"
+            onChange={() => onRentChange()}
+          />
+          <button className="button" onClick={() => submitRent()}>
             Pay
           </button>
           <button className="button" onClick={() => setPortal("home")}>

@@ -4,20 +4,6 @@
       "Email": "fakeemail@wisc.edu",
       "Password": "hhh",
       "Name": "Fake Wisc",
-      "Renters": [
-        {
-          "Email": "b@wisc.edu",
-          "Password": "hhh",
-          "Name": "Louis Griffin",
-          "Rent": "30"
-        },
-        {
-          "Email": "lpgriffin@wisc.edu",
-          "Password": "hhh",
-          "Name": "Louis Griffin",
-          "Rent": "30"
-        }
-      ],
       "MaintenanceRequests": [
         {
           "Name": "Louis Griffin",
@@ -40,6 +26,49 @@
           "Email": "lpgriffin@wisc.edu"
         }
       ]
+    },
+    {
+      "Email": "fal@wisc.edu",
+      "Password": "hhh",
+      "Name": "Fake Wisc",
+      "MaintenanceRequests": [
+        {
+          "Name": "Louis Griffin",
+          "Message": "there is lead in the water",
+          "Response": "lmao"
+        },
+        {
+          "Name": "Louis Griffin",
+          "Message": "pls sir my son is sick",
+          "Response": "null"
+        }
+      ],
+      "Applications": [
+        {
+          "Name": "Louis Griffin",
+          "Email": "lpgriffin@wisc.edu"
+        },
+        {
+          "Name": "Louis Griffin",
+          "Email": "lpgriffin@wisc.edu"
+        }
+      ]
+    }
+  ],
+  "Renters": [
+    {
+      "Email": "b@wisc.edu",
+      "Password": "hhh",
+      "Name": "Louis Griffin",
+      "Rent": "30",
+      "Owner": "fakeemail@wisc.edu"
+    },
+    {
+      "Email": "lpgriffin@wisc.edu",
+      "Password": "hhh",
+      "Name": "Louis Griffin",
+      "Rent": "30",
+      "Owner": "fakeemail@wisc.edu"
     }
   ]
 }

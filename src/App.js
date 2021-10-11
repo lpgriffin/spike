@@ -12,17 +12,23 @@ function App() {
   const [registering, setRegister] = useState(false);
 
   let values = JSON.parse(JSON.stringify(spikejson));
-  console.log(values);
 
   const onLogin = (email, password) => {
-    //TODO: Check for email & password combination correctness
-    if (password && email) {
-      //TODO: Check if user is a renter, change state accordingly
-      //if(fetchUserType(email) === "renter") setUserType("renter");
-      setUserEmail(email);
-    } else {
-      alert("Incorrect email or password, please try again");
+    let found = false;
+    for(let x = 0; x < values.Owners.length; x++) {
+      if(values.Owners[x].Email === email && values.Owners[x].Password === password) {
+        found = true;
+        setUserEmail(email);
+      }
     }
+    for(let x = 0; x < values.Renters.length; x++) {
+      if(values.Renters[x].Email === email && values.Renters[x].Password === password) {
+        found = true;
+        setUserEmail(email);
+        setUserType("renter");
+      }
+    }
+    if(!found) alert("Incorrect email or password, please try again");
   };
 
   const onRegister = () => {
@@ -30,10 +36,9 @@ function App() {
   };
 
   const finishRegister = (email) => {
-    alert(email);
     setRegister(false);
-    setUserType("owner");
-    setUserEmail(undefined);
+    setUserType("renter");
+    setUserEmail(email);
   };
 
   const onBack = () => {
